@@ -5,7 +5,7 @@ from deepgram import Deepgram
 DEEPGRAM_API_KEY = 'c3fabb0f38a92490dd7fd35ad3195eb828d40c32'
 
 # Replace with your file path and audio mimetype
-PATH_TO_FILE = '/home/dhruvi/Desktop/deepgram/Ananas 3 syl.mp3'
+PATH_TO_FILE = '/home/dhruvi/Desktop/deepgram/French_words/Bleu 1 syl.mp3'
 MIMETYPE = 'audio/mp3'
 
 def main():
@@ -14,7 +14,7 @@ def main():
     
     with open(PATH_TO_FILE, 'rb') as audio:
         source = {'buffer': audio, 'mimetype': MIMETYPE}
-        options = { "smart_format": True, "model": "Whisper Cloud", "language": "fr" }
+        options = { "smart_format": True, "model": "base", "language": "fr" }
     
         print('Requesting transcript...')
         
