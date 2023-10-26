@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 DEEPGRAM_API_KEY = 'c3fabb0f38a92490dd7fd35ad3195eb828d40c32'
-AUDIO_FOLDER = '/home/dhruvi/Desktop/French Similarity/French_words'
+AUDIO_FOLDER = '/home/dhruvi/Desktop/deepgram/French_Online_words'
 MIMETYPE = 'audio/mp3'
 
 def main():
@@ -70,7 +70,7 @@ def main():
             })
 
     # Save the results to a CSV file
-    csv_output_file = "audio_results.csv"
+    csv_output_file = "audio_results.csv_2"
     with open(csv_output_file, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['audio_file', 'transcribed_text', 'best_match', 'similarity_score']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
