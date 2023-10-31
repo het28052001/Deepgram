@@ -5,8 +5,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 DEEPGRAM_API_KEY = 'c3fabb0f38a92490dd7fd35ad3195eb828d40c32'
-AUDIO_FOLDER = '/home/dhruvi/Desktop/deepgram/French_Online_words'
-MIMETYPE = 'audio/mp3'
+AUDIO_FOLDER = '/home/dhruvi/Desktop/deepgram/testing'
+MIMETYPE = 'audio/m4a'
 
 def main():
     # Initialize the Deepgram SDK
@@ -16,7 +16,7 @@ def main():
     audio_results = []
 
     # List audio files in the specified folder
-    audio_files = [f for f in os.listdir(AUDIO_FOLDER) if f.endswith('.mp3')]
+    audio_files = [f for f in os.listdir(AUDIO_FOLDER) if f.endswith('.m4a')]
 
     for audio_file in audio_files:
         audio_path = os.path.join(AUDIO_FOLDER, audio_file)
@@ -27,11 +27,17 @@ def main():
         
             print(f'Requesting transcript for {audio_file}...')
             response = dg_client.transcription.sync_prerecorded(source, options)
-            result = response['results']['channels'][0]['alternatives'][0]['transcript']
-            result = result.split('.')
-            transcribed_text = " ".join(result)
+            # Inside your for loop for audio files
+            try:
+              result = response['results']['channels'][0]['alternatives'][0]['transcript']
+              result = result.split('.')
+              transcribed_text = " ".join(result)
+            except (KeyError, IndexError):
+              print(f"Failed to get transcript for {audio_file}. Skipping...")
+              continue
+
             
-            csv_file = "/home/dhruvi/Downloads/fr.csv"  # Path to your French words CSV
+            csv_file = "/home/dhruvi/Desktop/deepgram/fr1 .csv"  # Path to your French words CSV
             word_data = []
             with open(csv_file, "r", encoding="utf-8") as file:
                 csv_reader = csv.reader(file)
@@ -70,7 +76,7 @@ def main():
             })
 
     # Save the results to a CSV file
-    csv_output_file = "audio_results.csv_2"
+    csv_output_file = "audio_results.csv_1"
     with open(csv_output_file, 'w', newline='', encoding='utf-8') as csvfile:
         fieldnames = ['audio_file', 'transcribed_text', 'best_match', 'similarity_score']
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
