@@ -14,7 +14,7 @@ def main():
     
     with open(PATH_TO_FILE, 'rb') as audio:
         source = {'buffer': audio, 'mimetype': MIMETYPE}
-        options = { "smart_format": True, "model": "large", "language": "fr" }
+        options = { "smart_format": True, "model": "base", "language": "fr" }
     
         print('Requesting transcript...')
         
