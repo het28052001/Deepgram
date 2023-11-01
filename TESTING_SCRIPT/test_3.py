@@ -9,7 +9,7 @@ data=[]
 
 # # Replace with your file path and audio mimetype
 
-PATH_TO_FILE =  'French_words/Maman 2 syl.mp3'
+PATH_TO_FILE =  '/home/dhruvi/Desktop/deepgram/Montréal est constru.mp3'
 
 MIMETYPE = 'audio/mp3'
 
@@ -33,9 +33,5 @@ def main():
 
         for sentence in result:
             print(f'Transcription : {sentence}.')
-           
-
-
-
-        
+              
 main()
